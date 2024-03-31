@@ -6,8 +6,8 @@ const app=express();
 const mongoose=require("mongoose");
 const port=8080;
 const path=require("path");
-// const dbURL=process.env.ATLASDB_URL;
-const MONGo_URL="mongodb://127.0.0.1:27017/wanderlust";
+const dbURL=process.env.ATLASDB_URL;
+// const MONGo_URL="mongodb://127.0.0.1:27017/wanderlust";
 const Listing=require("./models/listing.js");
 const methodoverride=require("method-override");
 const ejsMate=require("ejs-mate");
@@ -28,7 +28,7 @@ const PassportLocalStrategy = require("passport-local").Strategy;
 const User=require("./models/user.js")
 app.use(cookieParser())
 async function main(){
-   await mongoose.connect(MONGo_URL);
+   await mongoose.connect(dbURL);
 }
 main()
 .then(()=>{
