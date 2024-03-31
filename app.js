@@ -160,7 +160,15 @@ app.use("/",userRouter);
 //         res.status(500).send("Error saving review");
 //     }
 // });
-
+app.get("/search/:key",async (req,res)=>{
+    console.log(req.params.key);
+    let data=await Listing.find({
+        "$or":[
+            {"title":{$regex:req.params.key}},
+            {"price":{$regex:req.params.key}}
+        ]
+    })
+})
 
 
 //if in case no api matches with the call made by user then app.al is call which will call express error
