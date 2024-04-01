@@ -38,10 +38,11 @@
           
         </div>
         <div id="searchBar" class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 inp-search" type="search" placeholder="Search destinations">
-          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-        </form></div>
+          <form class="d-flex" action="/search" method="GET">
+            <input class="form-control me-2 inp-search" name="id" type="search"  placeholder="Search destinations">
+            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+            <div id="searchResults"></div>
+          </form></div>
         
         <div class="navbar-nav ms-auto">
           <a class="nav-link" href="/listings/new">Airbnb your home</a>
