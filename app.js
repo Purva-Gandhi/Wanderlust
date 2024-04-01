@@ -112,7 +112,34 @@ app.use((req,res,next)=>{
 // })
 
 
-
+app.get("/search", async (req, res) => {
+    // Get the value of the 'id' query parameter
+    const searchId = req.query.id;
+      
+    // Check if searchId is a string
+    if (typeof searchId === 'string') {
+        // Use Mongoose to query the database          
+        let data = await Listing.find({
+            "$or": [
+                { "title": { $regex: searchId.charAt(0).toUpperCase() + searchId.slice(1)},
+                // "category": { $regex: searchId}  
+                }
+            ]
+        });
+        if(data.length>0){
+            res.render("listings/search.ejs", { data });
+        }
+        // Render a view with the search results
+        else{
+         req.flash("error","No destination exists!")
+        res.redirect("/listings")}
+        
+    } else {
+        // Handle the case when searchId is not a string
+        req.flash("error","No destination Found!!")
+        res.redirect("/listings")
+    }
+});
 //very very important line to connect with listing.js makes code clean and easy to understand
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter);

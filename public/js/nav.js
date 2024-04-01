@@ -18,5 +18,16 @@ const categories=[...new Set(Listing.map((item)=>{
     return item
 }))]
 document.getElementById("searchBar").addEventListener("keyup",(e)=>{
-    console.log("hello")
+    const searchData=e.target.value.toLowerCase();
+    const filterData=categories.filter((item)=>{
+        return (
+            item.tiltle.toLowerCase().includes(searchData)
+        )
+    })
+    displayItem(filterData);
 })
+const displayItem=(items)=>{
+    document.getElementById("root").innerHTML.map((item)=>{
+        var{image,title,price}=item;
+    })
+}
